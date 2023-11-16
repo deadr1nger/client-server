@@ -1,0 +1,24 @@
+spring:
+  kafka:
+#    bootstrap-servers: "127.0.0.7:9092"
+#    bootstrap-servers: "kafka:9092"
+    consumer:
+      group-id: "document-group"
+    producer:
+      client-id: "document-client"
+  datasource:
+#    url: jdbc:postgresql://postgres:5432/postgres
+#    url: jdbc:postgresql://host.docker.internal:5400/final #для того чтобы контейнер цеплял локальную постгрес
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: 1234
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+  liquibase:
+    enabled: true
+    change-log: classpath:liquibase-master.yml
+server:
+  port: 8080
+

@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+      id: Test-1
+      author: deadringer
+      preConditions:
+        - onFail: MARK_RAN
+      changes:
+        - createTable:
+            tableName: document
+            remarks: document-table
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: document_id
+                    nullable: false
+              - column:
+                  name: document_type
+                  type: varchar
+              - column:
+                  name: organization
+                  type: varchar
+              - column:
+                  name: document_created
+                  type: date
+              - column:
+                  name: description
+                  type: varchar
+              - column:
+                  name: patient_name
+                  type: varchar
+              - column:
+                  name: status
+                  type: varchar
+        - createTable:
+            tableName: message
+            remarks: message-table
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: message_id
+                    nullable: false
+              - column:
+                  name: document_id
+                  type: uuid
+                  constraints:
+                    onDelete: CASCADE
+
