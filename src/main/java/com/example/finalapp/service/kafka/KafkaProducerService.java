@@ -34,8 +34,12 @@ public class KafkaProducerService {
      * @param document - document to send
      * @throws ListenerExecutionFailedException - wrong type of kafka message exeption
      */
-    public void sendDocument(DocumentEntity document) throws ListenerExecutionFailedException {
-        kafkaTemplate.send(topic, document);
-        log.error("Error message of KAFKA", new ListenerExecutionFailedException("WRONG KAFKA MESSAGE"));
+    public void sendDocument(DocumentEntity document) {
+        try {
+            kafkaTemplate.send(topic, document);
+            log.info("Sent in kafka");
+        } catch (IllegalArgumentException e){
+            log.error("Error message of KAFKA", e);
+        }
     }
 }

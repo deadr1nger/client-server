@@ -42,7 +42,6 @@ public class DocumentServiceImpl {
      * @throws ListenerExecutionFailedException - wrong type of kafka message exeption
      */
     public void sendDocument(UUID id){
-        log.info("message sent to kafka");
         producerService.sendDocument(documentRepository.findById(id).get());
     }
 
@@ -52,14 +51,14 @@ public class DocumentServiceImpl {
      */
     @Transactional
     public void deleteDocument(MessageDTO messageDTO){
-        log.info("Document deleted");
         documentRepository.deleteById(messageDTO.getId());
+        log.info("Document deleted");
 
     }
     @Transactional
     public void delete(UUID id){
-        log.info("Document deleted");
         documentRepository.deleteById(id);
+        log.info("Document deleted");
 
     }
     @Transactional
